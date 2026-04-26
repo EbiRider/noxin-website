@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Vazirmatn',sans-serif;background:#f0f4f8;color:#1a2332;direction:rtl;}
+
+  /* NAV */
+  .nav{background:#fff;border-bottom:1px solid #e0eaf4;padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;}
+  .nav-logo{display:flex;align-items:center;gap:10px;}
+  .nav-logo-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#1565a8,#0d7a8a);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;}
+  .nav-logo-text{font-size:20px;font-weight:900;color:#0a3d6b;}
+  .nav-logo-text span{color:#0d9aa8;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{font-size:14px;color:#4a6070;text-decoration:none;font-weight:500;cursor:pointer;}
+  .nav-links a:hover{color:#1565a8;}
+  .nav-cta{background:#1565a8;color:#fff;font-family:'Vazirmatn',sans-serif;font-size:13px;font-weight:700;padding:9px 22px;border-radius:8px;border:none;cursor:pointer;}
+
+  /* HERO */
+  .hero{background:linear-gradient(135deg,#062a4e 0%,#1565a8 55%,#0d7a8a 100%);padding:80px 40px 90px;text-align:center;position:relative;overflow:hidden;}
+  .hero-circle1{position:absolute;top:-80px;left:-80px;width:350px;height:350px;border-radius:50%;background:rgba(255,255,255,0.04);}
+  .hero-circle2{position:absolute;bottom:-100px;right:-60px;width:450px;height:450px;border-radius:50%;background:rgba(255,255,255,0.03);}
+  .hero-badge{display:inline-block;background:rgba(255,255,255,0.12);color:#90d9f0;font-size:12px;font-weight:600;padding:7px 20px;border-radius:50px;border:1px solid rgba(255,255,255,0.18);margin-bottom:24px;position:relative;z-index:1;}
+  .hero h1{font-size:44px;font-weight:900;color:#fff;line-height:1.3;margin-bottom:18px;position:relative;z-index:1;}
+  .hero h1 em{font-style:normal;color:#5dd9e0;}
+  .hero-desc{font-size:16px;color:rgba(255,255,255,0.72);max-width:580px;margin:0 auto 16px;line-height:1.9;position:relative;z-index:1;}
+  .hero-site{font-size:14px;color:rgba(255,255,255,0.45);margin-bottom:36px;position:relative;z-index:1;}
+  .hero-site span{color:#5dd9e0;}
+  .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+  .btn-p{background:#5dd9e0;color:#0a3d6b;font-family:'Vazirmatn',sans-serif;font-size:15px;font-weight:700;padding:14px 34px;border-radius:10px;border:none;cursor:pointer;transition:all .2s;}
+  .btn-p:hover{background:#3fd0d7;transform:translateY(-2px);}
+  .btn-o{background:transparent;color:#fff;font-family:'Vazirmatn',sans-serif;font-size:15px;font-weight:500;padding:14px 34px;border-radius:10px;border:1.5px solid rgba(255,255,255,0.3);cursor:pointer;transition:all .2s;}
+  .btn-o:hover{background:rgba(255,255,255,0.09);}
+
+  /* ADVANTAGES */
+  .adv-section{background:#fff;padding:56px 40px;max-width:1000px;margin:0 auto;}
+  .sec-label{font-size:11px;font-weight:700;color:#0d9aa8;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+  .sec-title{font-size:26px;font-weight:700;color:#0a3d6b;margin-bottom:8px;}
+  .sec-sub{font-size:15px;color:#6b7f96;margin-bottom:36px;line-height:1.7;}
+  .adv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;}
+  .adv-card{border-radius:14px;padding:28px 22px;border:1px solid #e0eaf4;transition:all .25s;background:#fff;}
+  .adv-card:hover{border-color:#1565a8;transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,101,168,0.09);}
+  .adv-icon{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;}
+  .bg-blue{background:#ddeeff;} .bg-teal{background:#d3f7f5;} .bg-green{background:#d7f3e2;} .bg-amber{background:#fdecd7;}
+  .adv-card h3{font-size:16px;font-weight:700;color:#1a2332;margin-bottom:6px;}
+  .adv-card p{font-size:13px;color:#6b7f96;line-height:1.75;}
+
+  /* ABOUT */
+  .about-section{background:linear-gradient(135deg,#062a4e,#0a3d6b);padding:60px 40px;}
+  .about-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .about-text .sec-label{color:#5dd9e0;}
+  .about-text .sec-title{color:#fff;}
+  .about-text p{font-size:15px;color:rgba(255,255,255,0.72);line-height:1.9;margin-bottom:20px;}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .about-stat{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px;text-align:center;}
+  .about-stat-num{font-size:28px;font-weight:900;color:#5dd9e0;display:block;}
+  .about-stat-label{font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px;}
+
+  /* FEATURES TABS */
+  .features-section{padding:60px 40px;max-width:1000px;margin:0 auto;}
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+  .feat-item{background:#fff;border:1px solid #e0eaf4;border-radius:12px;padding:22px 20px;display:flex;gap:16px;align-items:flex-start;transition:all .2s;}
+  .feat-item:hover{border-color:#1565a8;box-shadow:0 4px 16px rgba(21,101,168,0.08);}
+  .feat-dot{width:10px;height:10px;border-radius:50%;background:#1565a8;flex-shrink:0;margin-top:5px;}
+  .feat-item-body h4{font-size:14px;font-weight:700;color:#1a2332;margin-bottom:4px;}
+  .feat-item-body p{font-size:12px;color:#7a8fa6;line-height:1.65;}
+
+  /* TECH */
+  .tech-section{background:#f7fafd;padding:60px 40px;border-top:1px solid #e0eaf4;}
+  .tech-inner{max-width:1000px;margin:0 auto;}
+  .tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;}
+  .tech-card{background:#fff;border:1px solid #e0eaf4;border-radius:12px;padding:20px 16px;text-align:center;}
+  .tech-tag{display:inline-block;background:#ddeeff;color:#1565a8;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+  .tech-card h4{font-size:14px;font-weight:700;color:#1a2332;margin-bottom:6px;}
+  .tech-card p{font-size:12px;color:#7a8fa6;line-height:1.6;}
+
+  /* SECURITY */
+  .sec-section{background:#0a3d6b;padding:60px 40px;}
+  .sec-inner{max-width:1000px;margin:0 auto;}
+  .sec-section .sec-label{color:#5dd9e0;}
+  .sec-section .sec-title{color:#fff;margin-bottom:8px;}
+  .sec-section .sec-sub{color:rgba(255,255,255,0.6);margin-bottom:36px;}
+  .sec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;}
+  .sec-item{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:22px 18px;}
+  .sec-item-icon{font-size:24px;margin-bottom:10px;}
+  .sec-item h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:6px;}
+  .sec-item p{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.6;}
+
+  /* CONTACT */
+  .contact-section{padding:60px 40px;max-width:1000px;margin:0 auto;}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+  .contact-info h3{font-size:22px;font-weight:700;color:#0a3d6b;margin-bottom:16px;}
+  .contact-info p{font-size:15px;color:#4a6070;line-height:1.8;margin-bottom:24px;}
+  .contact-items{display:flex;flex-direction:column;gap:12px;}
+  .contact-item{display:flex;align-items:center;gap:12px;background:#f0f6ff;border-radius:10px;padding:14px 18px;}
+  .contact-item-icon{width:36px;height:36px;border-radius:9px;background:#1565a8;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+  .contact-item-text{font-size:13px;color:#2d4560;font-weight:500;direction:ltr;text-align:right;}
+  .contact-form{background:#fff;border:1px solid #e0eaf4;border-radius:16px;padding:28px;}
+  .contact-form h4{font-size:16px;font-weight:700;color:#0a3d6b;margin-bottom:20px;}
+  .form-row{margin-bottom:14px;}
+  .form-row label{font-size:12px;color:#7a8fa6;margin-bottom:5px;display:block;}
+  .form-row input,.form-row textarea{width:100%;padding:11px 14px;border:1px solid #d8e6f4;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:14px;color:#1a2332;outline:none;background:#f8fbff;transition:border .2s;}
+  .form-row input:focus,.form-row textarea:focus{border-color:#1565a8;}
+  .form-row textarea{height:90px;resize:none;}
+  .btn-submit{width:100%;background:#1565a8;color:#fff;font-family:'Vazirmatn',sans-serif;font-size:14px;font-weight:700;padding:13px;border-radius:9px;border:none;cursor:pointer;transition:background .2s;}
+  .btn-submit:hover{background:#0f4f8a;}
+
+  /* FOOTER */
+  .footer{background:#061827;padding:28px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  .footer-logo{font-size:18px;font-weight:900;color:#5dd9e0;}
+  .footer p{color:rgba(255,255,255,0.3);font-size:12px;}
+
+  .divider{height:1px;background:#e5eaf0;max-width:1000px;margin:0 auto;}
+
+  @media(max-width:680px){
+    .about-inner,.contact-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .hero h1{font-size:28px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">🏥</div>
+    <div class="nav-logo-text">ژینو<span>س</span></div>
+  </div>
+  <div class="nav-links">
+    <a>مزیت‌ها</a>
+    <a>امکانات</a>
+    <a>فناوری</a>
+    <a>امنیت</a>
+    <a>تماس</a>
+  </div>
+  <button class="nav-cta">درخواست دمو</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-circle1"></div>
+  <div class="hero-circle2"></div>
+  <div class="hero-badge">🏥 سامانه تخصصی طب کار</div>
+  <h1>مدیریت هوشمند<br><em>سلامت شغلی</em> کارکنان</h1>
+  <p class="hero-desc">از سال ۱۳۹۶، همراه صنایع مختلف کشور — از بیمارستان صنعت نفت تا شرکت ملی حفاری ایران. سامانه‌ای که سلامت کارکنان بیش از ۲۰ شرکت را به‌صورت مستمر پایش می‌کند.</p>
+  <p class="hero-site">وب‌سایت: <span>Noxin.ir</span></p>
+  <div class="hero-btns">
+    <button class="btn-p">درخواست دمو رایگان</button>
+    <button class="btn-o">مشاهده امکانات</button>
+  </div>
+</div>
+
+<!-- ADVANTAGES -->
+<div style="background:#fff;">
+<div class="adv-section">
+  <div class="sec-label">مزیت‌های کلی</div>
+  <div class="sec-title">چرا ژینوس؟</div>
+  <div class="sec-sub">چهار مزیت اصلی که ژینوس را از سایر سامانه‌های طب کار متمایز می‌کند</div>
+  <div class="adv-grid">
+    <div class="adv-card">
+      <div class="adv-icon bg-blue">💰</div>
+      <h3>کاهش هزینه‌ها</h3>
+      <p>کاهش هزینه‌های اجرایی و افزایش بهره‌وری مراکز از طریق دیجیتالی‌سازی فرایندها</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon bg-teal">📜</div>
+      <h3>انطباق با آیین‌نامه‌ها</h3>
+      <p>انطباق کامل با آیین‌نامه رسمی وزارت بهداشت و الزامات قانونی طب کار</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon bg-green">⚡</div>
+      <h3>افزایش سرعت</h3>
+      <p>افزایش سرعت تکمیل پرونده‌ها و کاهش چشمگیر حجم کار پرسنل مرکز</p>
+    </div>
+    <div class="adv-card">
+      <div class="adv-icon bg-amber">🎯</div>
+      <h3>بهبود دقت</h3>
+      <p>بهبود دقت در تشخیص و نظردهی پزشک با تحلیل هوشمند داده‌ها</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-section">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="sec-label">معرفی شرکت</div>
+      <div class="sec-title">سابقه‌ای که به آن افتخار می‌کنیم</div>
+      <p>از سال ۱۳۹۶ فعالیت خود را با این باور آغاز کردیم که سلامت و ایمنی نیروی انسانی، پایه اصلی توسعه پایدار هر سازمان است.</p>
+      <p>همکاری با بیمارستان صنعت نفت، شرکت ملی حفاری ایران، بازار کار عمان و استقرار نرم‌افزار در مرکز پزشکی آب و برق خوزستان، بخشی از مسیر ماست.</p>
+      <p>تیم ما متشکل از متخصصان نخبه و دانشگاهی است که با تکیه بر تحقیق و توسعه، هوش مصنوعی را برای تحلیل دقیق‌تر و پیش‌بینی ریسک‌ها به‌کار می‌گیرد.</p>
+    </div>
+    <div class="about-stats">
+      <div class="about-stat"><span class="about-stat-num">۱۳۹۶</span><div class="about-stat-label">سال تأسیس</div></div>
+      <div class="about-stat"><span class="about-stat-num">+۲۰</span><div class="about-stat-label">شرکت تحت پایش</div></div>
+      <div class="about-stat"><span class="about-stat-num">۵</span><div class="about-stat-label">پروژه بزرگ ملی</div></div>
+      <div class="about-stat"><span class="about-stat-num">AI</span><div class="about-stat-label">هوش مصنوعی</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features-section">
+  <div class="sec-label">امکانات سامانه</div>
+  <div class="sec-title">همه آنچه یک کلینیک طب کار نیاز دارد</div>
+  <div class="sec-sub">از پذیرش تا گزارش‌دهی — در یک پلتفرم یکپارچه و هوشمند</div>
+  <div class="feat-grid">
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>مدیریت کاربران و دسترسی‌ها</h4><p>تعریف سطح دسترسی نامحدود، نقش‌های متفاوت و مهر و امضای دیجیتال</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>داشبورد مدیریتی پویا</h4><p>پایش لحظه‌ای وضعیت پرونده‌ها و داشبورد متناسب با نقش هر کاربر</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>پذیرش سریع و ثبت گروهی</h4><p>ثبت گروهی از طریق اکسل، احراز هویت دقیق و پیشگیری از ویرایش غیرمجاز</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>هوشمندسازی و الگوسازی شغلی</h4><p>بانک جامع عوامل زیان‌آور شغلی و تکمیل سریع فرم‌ها بر اساس داده‌های قبلی</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>ثبت نتایج آزمایشگاهی</h4><p>ثبت فردی و گروهی آزمایش‌ها از طریق اکسل و ثبت واکسیناسیون افراد</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>سوابق سلامت و روند تغییرات</h4><p>نمایش روند تغییرات پارامترهای سلامت در پرونده‌های متوالی</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>تحلیل گرافیکی شاخص‌های بالینی</h4><p>نمودار BMI، فشار خون، دیابت و آزمایش‌ها با تفسیر رنگی و تحلیلی</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>ارزیابی بینایی و دید رنگی</h4><p>ثبت دقیق تست‌های بینایی، میدان دید و Field Test با استاندارد X/10</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>اودیومتری و تحلیل شنوایی</h4><p>نمایش خودکار اودیوگرام، ثبت Masked و NR برای هر گوش به‌صورت مجزا</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>اسپیرومتری و ارزیابی ریوی</h4><p>پیوست مستقیم فایل‌ها و ثبت دسته‌ای داده‌های اسپیرومتری</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>سلامت روان و آزمون‌های روانشناختی</h4><p>آزمون‌های OSIPOW، Neo، MMPI و تحلیل سلامت روان</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>نظردهی هوشمند پزشک</h4><p>نمایش خودکار موارد غیرنرمال و ابزارهای هوشمند تحلیل داده برای پزشک</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>خروجی PDF استاندارد</h4><p>تطابق کامل با فرمت ۵ صفحه‌ای مرکز سلامت محیط و کار وزارت بهداشت</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>ارزیابی ریسک سلامت</h4><p>محاسبه خطر سکته قلبی در بازه ۱۰ سال آینده و ریسک متابولیک فردی</p></div></div>
+    <div class="feat-item"><div class="feat-dot"></div><div class="feat-item-body"><h4>گزارشات مدیریتی</h4><p>گزارشات گروهی، فردی و تحلیلی با داشبورد مدیریتی جامع</p></div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TECH -->
+<div class="tech-section">
+  <div class="tech-inner">
+    <div class="sec-label">معماری فناوری</div>
+    <div class="sec-title">زیرساخت مدرن و قابل اعتماد</div>
+    <div class="sec-sub" style="margin-bottom:32px;">معماری Clean Architecture با تفکیک کامل لایه‌ها و امنیت بالا</div>
+    <div class="tech-grid">
+      <div class="tech-card"><div class="tech-tag">Frontend</div><h4>Next.js</h4><p>رابط کاربری مستقل و مدرن با عملکرد سریع</p></div>
+      <div class="tech-card"><div class="tech-tag">Backend</div><h4>.NET Core 8</h4><p>بک‌اند قدرتمند مبتنی بر Clean Architecture</p></div>
+      <div class="tech-card"><div class="tech-tag">Database</div><h4>SQL Server 2021</h4><p>پایگاه داده سازمانی با قابلیت بالا</p></div>
+      <div class="tech-card"><div class="tech-tag">Protocol</div><h4>REST API / HTTPS</h4><p>ارتباط ایمن و استاندارد بین لایه‌ها</p></div>
+      <div class="tech-card"><div class="tech-tag">Auth</div><h4>JWT + RBAC</h4><p>احراز هویت امن و کنترل دسترسی نقش‌محور</p></div>
+      <div class="tech-card"><div class="tech-tag">استقرار</div><h4>On-Premise</h4><p>نصب روی سرور سازمان، بدون وابستگی به Cloud</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY -->
+<div class="sec-section">
+  <div class="sec-inner">
+    <div class="sec-label">امنیت داده‌ها</div>
+    <div class="sec-title">حفاظت چندلایه از اطلاعات</div>
+    <div class="sec-sub">امنیت پرونده‌های پزشکی کارکنان، اولویت اول ماست</div>
+    <div class="sec-grid">
+      <div class="sec-item"><div class="sec-item-icon">🔒</div><h4>رمزنگاری TLS</h4><p>تمام داده‌ها در انتقال با TLS رمزنگاری می‌شوند</p></div>
+      <div class="sec-item"><div class="sec-item-icon">👤</div><h4>کنترل دسترسی کامل</h4><p>Role-Based Access Control و قابلیت اتصال به AD/LDAP</p></div>
+      <div class="sec-item"><div class="sec-item-icon">📋</div><h4>لاگ و Audit کامل</h4><p>ثبت ورود، خروج، مشاهده پرونده و تغییر داده‌های حساس</p></div>
+      <div class="sec-item"><div class="sec-item-icon">🔗</div><h4>یکپارچگی سازمانی</h4><p>قابل اتصال به HR، ERP و AD از طریق API امن</p></div>
+      <div class="sec-item"><div class="sec-item-icon">⚖️</div><h4>Load Balancing</h4><p>معماری Stateless با قابلیت توزیع بار و مانیتورینگ</p></div>
+      <div class="sec-item"><div class="sec-item-icon">🏢</div><h4>نصب در DMZ</h4><p>سازگار با سیاست‌های IT سازمان، قابل نصب در DMZ</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div class="sec-label">ارتباط با ما</div>
+  <div class="sec-title">همین امروز با ما تماس بگیرید</div>
+  <div class="sec-sub">برای دمو رایگان یا دریافت اطلاعات بیشتر، با تیم ما در تماس باشید</div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>اطلاعات تماس</h3>
+      <p>اگر سوال یا نیاز به مشاوره دارید، تیم ما آماده پاسخگویی است.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">اهواز – شهرک صنعتی شماره ۴، طبقه سوم، واحد ۴۰۱</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">09388656276 &nbsp;|&nbsp; 06132907644</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">info@noxin.ir</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🌐</div>
+          <div class="contact-item-text">Noxin.ir</div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📱</div>
+          <div class="contact-item-text">@noxinir</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h4>درخواست دمو رایگان</h4>
+      <div class="form-row"><label>نام و نام خانوادگی</label><input type="text" placeholder="نام شما"></div>
+      <div class="form-row"><label>شماره تماس</label><input type="text" placeholder="09xxxxxxxxx"></div>
+      <div class="form-row"><label>نام سازمان</label><input type="text" placeholder="شرکت / کلینیک"></div>
+      <div class="form-row"><label>توضیحات</label><textarea placeholder="سوال یا نیاز خود را بنویسید..."></textarea></div>
+      <button class="btn-submit">ارسال درخواست دمو ↗</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">ژینوس</div>
+  <p>سامانه تخصصی طب کار · Noxin.ir · info@noxin.ir</p>
+  <p style="color:rgba(255,255,255,0.2);">© ۱۴۰۴ تمامی حقوق محفوظ است</p>
+</div>
+
+</body>
+</html>

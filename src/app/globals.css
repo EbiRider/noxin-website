@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-vazirmatn: 'Vazirmatn', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-vazirmatn), sans-serif;
+  background: #f0f4f8;
+  color: #1a2332;
+  direction: rtl;
+}
+
+/* Splash screen */
+@keyframes splash-fade-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes splash-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; pointer-events: none; }
+}
+
+.splash-enter {
+  animation: splash-fade-in 0.6s ease forwards;
+}
+
+.splash-exit {
+  animation: splash-fade-out 0.5s ease forwards;
+}
+
+/* Smooth section scroll offset for sticky nav */
+section[id] {
+  scroll-margin-top: 64px;
+}
