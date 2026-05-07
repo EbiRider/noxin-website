@@ -1,0 +1,30 @@
+stages:
+  - deploy
+
+deploy_production:
+  stage: deploy
+  image: ubuntu:22.04
+  only:
+    - main
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq openssh-client
+    - eval $(ssh-agent -s)
+    # SSH_PRIVATE_KEY: add in GitLab → Settings → CI/CD → Variables (type: File, masked)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh && chmod 700 ~/.ssh
+    # SERVER_KNOWN_HOSTS: run `ssh-keyscan YOUR_SERVER_IP` and paste the output as a variable
+    - echo "$SERVER_KNOWN_HOSTS" >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    # SERVER_IP and DEPLOY_USER are plain CI/CD variables
+    - >
+      ssh ${DEPLOY_USER}@${SERVER_IP}
+      "cd /var/www/noxin &&
+       git pull origin main &&
+       npm ci &&
+       npm run build &&
+       pm2 restart noxin --update-env &&
+       pm2 save"
+  environment:
+    name: production
+    url: https://noxin.ir

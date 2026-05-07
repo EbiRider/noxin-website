@@ -26,7 +26,7 @@ export default function Home() {
       >
         <Navbar />
         <main>
-          <Hero />
+          <Hero ready={splashDone} />
           <Advantages />
           <About />
           <Features />
