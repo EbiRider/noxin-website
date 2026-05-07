@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Create deployment archive
-        run: tar -czf /tmp/noxin-deploy.tar.gz --exclude=./node_modules --exclude=./.next --exclude=./.git .
+        run: tar -czf noxin-deploy.tar.gz --exclude=./node_modules --exclude=./.next --exclude=./.git --exclude=./noxin-deploy.tar.gz .
 
       - name: Upload archive to server
         uses: appleboy/scp-action@v0.1.7
@@ -19,7 +19,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: /tmp/noxin-deploy.tar.gz
+          source: noxin-deploy.tar.gz
           target: /tmp/
 
       - name: Extract, build and restart
@@ -29,8 +29,8 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            tar -xzf /tmp/noxin-deploy.tar.gz -C /var/www/noxin
-            rm /tmp/noxin-deploy.tar.gz
+            tar -xzf /tmp/noxin-website/noxin-deploy.tar.gz -C /var/www/noxin
+            rm -rf /tmp/noxin-website
             cd /var/www/noxin
             npm ci
             npm run build
