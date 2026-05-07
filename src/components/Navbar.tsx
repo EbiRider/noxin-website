@@ -9,7 +9,7 @@ const links = [
   { label: 'امکانات', href: '#features' },
   { label: 'فناوری', href: '#tech' },
   { label: 'امنیت', href: '#security' },
-  { label: 'تماس', href: '#contact' },
+  { label: 'تماس با ما', href: '#contact' },
 ]
 
 export default function Navbar() {
