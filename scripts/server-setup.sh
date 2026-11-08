@@ -10,18 +10,19 @@ DEPLOY_USER="deploy"
 NVM_VERSION="v0.40.3"
 NODE_VERSION="20"
 
-echo "=== [1/7] Install base packages (git, nginx, certbot) ==="
-apt-get update --fix-missing || true
-apt-get install -y git nginx certbot python3-certbot-nginx --fix-missing
+echo "=== [0/7] Switch to ArvanCloud mirror (accessible from Iran) ==="
+cat > /etc/apt/sources.list <<'EOF'
+deb http://mirror.arvancloud.ir/ubuntu noble main restricted universe multiverse
+deb http://mirror.arvancloud.ir/ubuntu noble-updates main restricted universe multiverse
+deb http://mirror.arvancloud.ir/ubuntu noble-security main restricted universe multiverse
+EOF
 
-echo "=== [2/7] Install Node.js $NODE_VERSION via nvm ==="
-export NVM_DIR="/root/.nvm"
-curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh" | bash
-# Load nvm in this shell session
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install $NODE_VERSION
-nvm alias default $NODE_VERSION
-nvm use default
+echo "=== [1/7] Install base packages (git, nginx, certbot) ==="
+apt-get update
+apt-get install -y git nginx certbot python3-certbot-nginx
+
+echo "=== [2/7] Install Node.js $NODE_VERSION via binary tarball ==="
+tar -xJf /tmp/node.tar.xz -C /usr/local --strip-components=1
 node -v && npm -v
 
 echo "=== [3/7] Install PM2 ==="
@@ -31,21 +32,7 @@ echo "=== [4/7] Create deploy user ==="
 id -u $DEPLOY_USER &>/dev/null || useradd -m -s /bin/bash $DEPLOY_USER
 mkdir -p /home/$DEPLOY_USER/.ssh
 chmod 700 /home/$DEPLOY_USER/.ssh
-# Copy root's nvm to deploy user
-cp -r /root/.nvm /home/$DEPLOY_USER/.nvm
-chown -R $DEPLOY_USER:$DEPLOY_USER /home/$DEPLOY_USER/.nvm
-# Add nvm init to deploy user's bashrc
-cat >> /home/$DEPLOY_USER/.bashrc <<'BASHRC'
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-BASHRC
-# Symlink node/npm/pm2 to /usr/local/bin so non-login shells find them
-NODE_BIN=$(find /root/.nvm/versions/node -name "node" -type f | head -1)
-ln -sf "$NODE_BIN" /usr/local/bin/node
-ln -sf "$(dirname $NODE_BIN)/npm" /usr/local/bin/npm
-ln -sf "$(dirname $NODE_BIN)/npx" /usr/local/bin/npx
-PM2_BIN=$(find /root/.nvm/versions/node -name "pm2" -type f | head -1)
-ln -sf "$PM2_BIN" /usr/local/bin/pm2
+# node/npm/pm2 are in /usr/local/bin from the tarball install — no extra setup needed
 chmod 600 /home/$DEPLOY_USER/.ssh/authorized_keys 2>/dev/null || true
 chown -R $DEPLOY_USER:$DEPLOY_USER /home/$DEPLOY_USER/.ssh
 

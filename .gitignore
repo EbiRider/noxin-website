@@ -31,3 +31,9 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# Runtime data (tasks, uploads) — lives on server only
+data/
+
+# Local backups downloaded from server
+backups/

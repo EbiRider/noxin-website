@@ -2,8 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'noxin',
-      script: 'node_modules/.bin/next',
-      args: 'start',
+      script: 'server.js',
       cwd: '/var/www/noxin',
       instances: 1,
       autorestart: true,
